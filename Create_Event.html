@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event Page</title>
+    <link rel="stylesheet" href="css/createeventstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Left form for uploading images -->
+        <div class="form-box">
+            
+            <form id="image-upload-form">
+                <div class="input-group">
+                    <label for="event-images">Choose images:</label>
+                    <input type="file" id="event-images" multiple accept="image/*" required>
+                </div>
+                <button type="submit">Upload Images</button>
+            </form>
+            <div id="uploaded-images" class="uploaded-images"></div>
+            
+        </div>
+
+        <!-- Right form for event details -->
+        <div class="form-box">
+            <h1>Create Your Event</h1>
+            <form id="event-form">
+                <div class="input-group">
+                    <label for="event-name"></label>
+                    <input type="text" id="event-name" placeholder="Enter the event name" required>
+                </div>
+                <div class="input-group">
+                    <label for="event-date"></label>
+                    <input type="date" id="event-date" required>
+                </div>
+                <div class="input-group">
+                    <label for="event-time"></label>
+                    <input type="time" id="event-time" required>
+                </div>
+                <div class="input-group">
+                    <label for="event-location"></label>
+                    <input type="text" id="event-location" placeholder="Enter the event location" required>
+                </div>
+                <div class="input-group">
+                    <label for="event-description"></label>
+                    <textarea id="event-description" placeholder="Enter a brief description of the event" rows="4" required></textarea>
+                </div>
+                <button type="submit">Create Event</button>
+            </form>
+            <p>Want to go back? <a href="index.html">Home</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+        const db = firebase.firestore();
+
+        const imageUploadForm = document.getElementById('image-upload-form');
+        const uploadedImagesContainer = document.getElementById('uploaded-images');
+        const eventForm = document.getElementById('event-form');
+
+        // Handle image upload
+        imageUploadForm.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const files = document.getElementById('event-images').files;
+            uploadedImagesContainer.innerHTML = ''; // Clear previous images
+            const imageUrls = [];
+
+            for (const file of files) {
+                const storageRef = storage.ref(`event_images/${file.name}`);
+                await storageRef.put(file); // Upload the image to Firebase Storage
+                const url = await storageRef.getDownloadURL(); // Get the download URL
+                imageUrls.push(url); // Add the URL to the array
+
+                const img = document.createElement('img');
+                img.src = url; // Display the uploaded image
+                img.classList.add('uploaded-image');
+                uploadedImagesContainer.appendChild(img);
+            }
+        });
+
+        // Handle event creation
+        eventForm.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const eventName = document.getElementById('event-name').value;
+            const eventDate = document.getElementById('event-date').value;
+            const eventTime = document.getElementById('event-time').value;
+            const eventLocation = document.getElementById('event-location').value;
+            const eventDescription = document.getElementById('event-description').value;
+
+            // Gather image URLs (assuming images are uploaded before creating the event)
+            const uploadedImages = document.getElementById('event-images').files;
+            const imageUrls = [];
+            for (const file of uploadedImages) {
+                const storageRef = storage.ref(`event_images/${file.name}`);
+                const url = await storageRef.getDownloadURL();
+                imageUrls.push(url);
+            }
+
+            // Create an event object
+            const eventData = {
+                name: eventName,
+                date: eventDate,
+                time: eventTime,
+                location: eventLocation,
+                description: eventDescription,
+                images: imageUrls,
+            };
+
+            try {
+                // Save event data to Firestore
+                await db.collection('events').add(eventData);
+                console.log('Event created successfully');
+                // Optionally redirect or update the map here
+            } catch (error) {
+                console.error('Error creating event:', error);
+            }
+        });
+    </script>
+</body>
+</html>

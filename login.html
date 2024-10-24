@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1>Locate Nearby Gym</h1>
+            <form>
+                <div class="input-group">
+                    <label for="email"></label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password"></label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <a href="password_reset.html" class="forgot-password">Forgot Password?</a> <!-- Forgot Password link -->
+                </div>
+                <button type="submit">Log In</button>
+            </form>
+            <div class="social-login">
+                <h2></h2>
+                <div class="social-buttons">
+                    <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
+                    <button class="social-btn instagram"><i class="fab fa-instagram"></i></button>
+                    <button class="social-btn apple"><i class="fab fa-apple"></i></button>
+                    <button class="social-btn twitter"><i class="fab fa-x-twitter"></i></button>
+                    <button class="social-btn google"><i class="fab fa-google"></i></button>
+                </div>
+            </div>
+            <p>Don't have an account? <a href="SignUp.html">Sign Up</a></p>
+        </div>
+    </div>
+</body>
+</html>

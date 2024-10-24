@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="#"><i class="fas fa-cogs"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="#"><i class="fas fa-comments"></i> Messages</a></li>
+                <li><a href="#"><i class="fas fa-power-off"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <header>
+                <h2>Welcome, Admin</h2>
+                <div class="header-icons">
+                    <i class="fas fa-bell"></i>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <div class="stats-section">
+                <div class="stat-box">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>1,234</h3>
+                    <p>Users</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>567</h3>
+                    <p>Reports</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>$12,345</h3>
+                    <p>Earnings</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-cogs"></i>
+                    <h3>76</h3>
+                    <p>Tasks</p>
+                </div>
+            </div>
+
+            <div class="user-table">
+                <h2>Recent Users</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>john.doe@example.com</td>
+                            <td>Admin</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>jane.smith@example.com</td>
+                            <td>Moderator</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr>
+                            <td>Bob Johnson</td>
+                            <td>bob.johnson@example.com</td>
+                            <td>User</td>
+                            <td>Inactive</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

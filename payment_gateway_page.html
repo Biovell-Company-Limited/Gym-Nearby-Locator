@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1>Choose Payment Method</h1>
+            <form>
+                <div class="input-group">
+                    <label for="amount"></label>
+                    <input type="number" id="amount" placeholder="Enter the amount" required>
+                </div>
+                <h2>Select Payment Gateway</h2>
+                <div class="payment-buttons">
+                    <button class="payment-btn paypal"><i class="fab fa-paypal"></i> </button>
+                    <button class="payment-btn stripe"><i class="fab fa-stripe"></i> </button>
+                    <button class="payment-btn razorpay"><i class="fas fa-credit-card"></i></button>
+                </div>
+            </form>
+            <p>Go back to <a href="index.html">Home</a></p>
+        </div>
+    </div>
+
+    <style>
+        /* Container styling */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .form-box {
+            background-color: #f4f4f4;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Input fields */
+        .input-group {
+            margin: 1.5rem 0;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Payment buttons */
+        .payment-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .payment-btn {
+            width: 32%;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-btn i {
+            margin-right: 10px;
+        }
+
+        .payment-btn.paypal {
+            color: #0070ba;
+        }
+
+        .payment-btn.stripe {
+            color: #6772e5;
+        }
+
+        .payment-btn.razorpay {
+            color: #5578eb;
+        }
+
+        .payment-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Links */
+        a {
+            text-decoration: none;
+            color: #0070ba;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</body>
+</html>
